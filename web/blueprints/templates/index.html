@@ -1,1 +1,47 @@
-HOLA JUAN
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '952096844837567',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+
+    FB.getLoginStatus(function(response) {
+      console.log("login status: ", response)
+      if (response.status === 'connected') {
+        console.log('Logged in.');
+        loggedIn(response.authResponse);
+      }
+      else {
+        FB.login();
+      }
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+
+   function loggedIn(authResponse) {
+     var avatar = 'https://graph.facebook.com/'+authResponse.userID+'/picture';
+     $('input[name="fb_user_id"]').val(authResponse.userID);
+     $('#avatar').attr('src', avatar);
+   }
+
+
+</script>
+
+<h1>Hola<h1>
+
+
+<form action="">
+  <img id="avatar" src="" />
+  <input name="fb_url" />
+  <input type="hidden" name="fb_user_id" />
+</form>
