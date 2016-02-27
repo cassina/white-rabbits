@@ -7,7 +7,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import InputRequired
 
 
-events = Blueprint('events', __name__, template_folder='templates', url_prefix='/events')
+events = Blueprint('events', __name__, template_folder='templates')
 
 DEMO_URL = 'https://www.facebook.com/events/1315199878496490'
 
