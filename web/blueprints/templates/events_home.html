@@ -1,4 +1,5 @@
 {% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %}
     Calcool8tor
@@ -32,5 +33,5 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Hello</h1>
+    {{ wtf.quick_form(form) }}
 {% endblock %}
