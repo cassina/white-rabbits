@@ -10,8 +10,11 @@ handlers:
   upload: favicon\.ico
 
 - url: .*
-  script: main.app
+  script: web.main.app
 
 libraries:
 - name: webapp2
   version: "2.5.2"
+
+env_variables:
+  KEY: 'dev-secret'
