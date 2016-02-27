@@ -18,3 +18,7 @@ app.register_blueprint(blueprint=events)
 def main_handler():
     return 'Hello'
 
+@app.route('/', methods=['POST'])
+def fb_canvas_main():
+    return 'Hello FB CANVAS'
+
