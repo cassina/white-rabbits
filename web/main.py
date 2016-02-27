@@ -10,15 +10,5 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 app.config.from_object(DebugConfig)
 
-
-app.register_blueprint(blueprint=events)
-
-
-@app.route('/', methods=['GET'])
-def main_handler():
-    return 'Hello'
-
-@app.route('/', methods=['POST'])
-def fb_canvas_main():
-    return 'Hello FB CANVAS'
-
+app.register_blueprint(blueprint=events, url_prefix='/events')
+app.register_blueprint(blueprint=canvas, url_prefix='/')
