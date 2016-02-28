@@ -4,6 +4,13 @@
 {% block title %}
     Event Dashboard
 {% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/screen.css') }}" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto' rel='stylesheet' type='text/css'>
+{% endblock %}
+
 {% block content %}
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -15,27 +22,12 @@
         {% endif %}
     {% endwith %}
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Chelometro</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="../css/normalize.css" type="text/css">
-    <link rel="stylesheet" href="../css/dashboard.css" type="text/css">
-    <link rel="stylesheet" href="../css/fonts.css" type="text/css">
-    <link rel="stylesheet" href="../css/rangeslider2.css" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto' rel='stylesheet' type='text/css'>
-
-</head>
-<body>
-
-<main>
+    <main>
 
     <section>
         <div class="query">
             <figure>
-                <img src="../img/logo.png" alt="Chelometro">
+                <img src="{{url_for('static', filename='img/logo.png')}}" alt="Chelometro">
             </figure>
             <h1>Título del Evento</h1>
             <h1>Hora de inicio: 8:00 PM</h1>
@@ -45,7 +37,7 @@
         <form class="brands" action="">
             <div class="beer">
                 <figure class="beer__images">
-                    <img src="../img/modelo.png" alt="Cerveza Modelo">
+                    <img src="{{url_for('static', filename='img/modelo.png')}}" alt="Cerveza Modelo">
                 </figure>
                 <div>
                     <p>10<br>Personas les gusta Modelo</p>
@@ -53,7 +45,7 @@
             </div>
             <div class="beer">
                 <figure class="beer__images">
-                    <img src="../img/corona.png" alt="Cerveza Corona">
+                    <img src="{{url_for('static', filename='img/corona.png')}}" alt="Cerveza Corona">
                 </figure>
                 <div>
                     <p>5<br>Personas les gusta Corona</p>
@@ -61,7 +53,7 @@
             </div>
             <div class="beer">
                 <figure class="beer__images">
-                    <img src="../img/victoria.png" alt="Victoria">
+                    <img src="{{url_for('static', filename='img/victoria.png')}}" alt="Victoria">
                 </figure>
                 <div>
                     <p>15<br>Personas les gusta Victoria</p>
@@ -78,10 +70,12 @@
                 <button class="pedir" type="submit">Hacer pedido</button>
             </div>
         </form>
-
     </section>
-
 </main>
+{% endblock %}
+
+
+{% block scripts %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="../scripts/rangeslider2.js"></script>
 <script>
@@ -199,8 +193,4 @@
 
     })();
 </script>
-</body>
-</html>
-
-
 {% endblock %}

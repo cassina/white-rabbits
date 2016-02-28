@@ -12,7 +12,7 @@ main {
   padding: 4em 0;
   &::before {
     content: "";
-    background-image: url(../img/pattern.png);
+    background-image: url(/static/img/pattern.png);
     position: absolute;
     top: 0;
     right: 0;
