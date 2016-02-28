@@ -3,6 +3,8 @@ import datetime
 import json
 import logging
 import requests
+from dateutil.parser import parse
+import time
 
 from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
@@ -26,20 +28,21 @@ def register():
     event.fb_user_token = form.fb_user_token.data
     event.made_request = False
     event.event_name = form.event_name.data
-    event.event_time = parse_time(form.event_time.data)
+    event.event_time = form.event_time.data
     event.put()
     flash('Thank you for registering your Facebook event!')
     return redirect(url_for('events.dashboard', event_id=event.fb_event_id))
 
 
 def parse_time(date_string):
-    from dateutil.parser import parse
     date = parse(date_string)
     return local_to_utc(date)
 
-def local_to_utc(datetime):
-    secs = time.mktime(datetime.timetuple())
+
+def local_to_utc(date_time):
+    secs = time.mktime(date_time.timetuple())
     return time.gmtime(secs)
+
 
 @events.route('/<event_id>/<user_id>')
 def user_choose_chelas(event_id, user_id):
