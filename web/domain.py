@@ -22,3 +22,14 @@ class EventModel(ndb.Model):
                                     indexed=True)
     fb_user_token = ndb.StringProperty(required=True,
                                     indexed=True)
+    made_request = ndb.BooleanProperty(indexed=True)
+
+
+
+class DrinkConfirmationModel(ndb.Model):
+    fb_event_id = ndb.StringProperty(required=True,
+                                     indexed=True)
+    fb_user_id = ndb.StringProperty(required=True,
+                                    indexed=True)
+    drink_brand = ndb.StringProperty(required=True)
+    drink_decision = ndb.BooleanProperty(required=True)
