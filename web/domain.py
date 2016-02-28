@@ -21,4 +21,4 @@ class EventModel(ndb.Model):
     fb_user_id = ndb.StringProperty(required=True,
                                     indexed=True)
     fb_user_token = ndb.StringProperty(required=True,
-                                    indexed=True)
+                                       indexed=True)
