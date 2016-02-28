@@ -45,12 +45,33 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
+       var userAuth;
 
-        function loggedIn(authResponse) {
-            var avatar = 'https://graph.facebook.com/'+authResponse.userID+'/picture';
-            $('input[name="fb_user_id"]').val(authResponse.userID);
-            $('input[name="fb_user_token"]').val(authResponse.accessToken);
-            $('#avatar').attr('src', avatar);
-        }
-    </script>
+       function loggedIn(authResponse) {
+         userAuth = authResponse;
+         var avatar = 'https://graph.facebook.com/'+authResponse.userID+'/picture';
+         $('input[name="fb_url"]').prop('disabled', false);
+         $('input[name="fb_user_id"]').val(authResponse.userID);
+         $('input[name="fb_user_token"]').val(authResponse.accessToken);
+         $('#avatar').attr('src', avatar);
+       }
+
+       function fbUrlChanged() {
+         var url = $('input[name="fb_url"]').val();
+         var eventID = url.match(/events\/(\d+)/)[1];
+         FB.api('/'+eventID, 'GET', {
+           access_token: userAuth.accessToken
+         }, function () {
+           console.log("EVENT DATA: ", arguments) 
+         })
+       }
+
+       function init () {
+         $('form').prop('disabled', true);
+         $('input[name="fb_url"]').prop('disabled', true);
+         $('input[name="fb_url"]').on('change', fbUrlChanged);
+       }
+
+       $(init);
+</script>
 {% endblock %}
