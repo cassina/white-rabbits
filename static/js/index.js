@@ -78,5 +78,7 @@
        }
 
        $(init);
+
+      console.log("OK");
        
 })(jQuery);
