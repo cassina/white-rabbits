@@ -65,7 +65,7 @@
            if (eventResponse.error) {
            } else {
              $('#event_name').text(eventResponse.name);
-             $('input[name="fb_event_id"]').text(eventResponse.id);
+             $('input[name="fb_event_id"]').val(eventResponse.id);
              $('input[name="event_time"]').text(eventResponse.start_time);
              $('form').prop('disabled', false);
            }
