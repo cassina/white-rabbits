@@ -24,8 +24,8 @@ def register():
     if not form.validate_on_submit():
         return redirect(url_for('canvas.redirect_to_fb_app'))        
 
-    found = EventModel.query(EventModel.fb_event_id == form.fb_event_id.data).fetch()
-    if len(found) > 0:
+    found = EventModel.query(EventModel.fb_event_id == form.fb_event_id.data).count()
+    if found > 0:
         return redirect(url_for('events.dashboard', event_id=event.fb_event_id))
 
     event = EventModel()
