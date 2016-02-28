@@ -12,3 +12,4 @@ app.config.from_object(DebugConfig)
 
 app.register_blueprint(blueprint=events, url_prefix='/events')
 app.register_blueprint(blueprint=canvas, url_prefix='/')
+

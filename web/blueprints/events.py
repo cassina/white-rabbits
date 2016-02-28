@@ -142,3 +142,10 @@ def get_attendants(event_id):
     data = {'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET)}
     attendants_url = FACEBOOK_GRAPH_URL + '{id}/attending'.format(id=event_id)
     return requests.request('GET', attendants_url, params=data)
+
+
+@events.route('/culeros')
+def culeros():
+    from web.domain import RegisterEventForm
+    form = RegisterEventForm()
+    return render_template('index.html', form=form)

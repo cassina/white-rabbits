@@ -6,14 +6,14 @@ from google.appengine.ext import ndb
 
 
 class RegisterEventForm(Form):
-    fb_url = StringField(description='Please paste de Facebook Event url Here',
+    fb_url = StringField(render_kw={'placeholder': 'Ingresa la URL de tu evento en Facebook'},
                          validators=[InputRequired()])
     fb_event_id = HiddenField(validators=[InputRequired()])
     fb_user_id = HiddenField(validators=[InputRequired()])
     fb_user_token = HiddenField(validators=[InputRequired()])
     event_name = HiddenField(validators=[InputRequired()])
     event_time = HiddenField(validators=[InputRequired()])
-    submit = SubmitField()
+    submit = SubmitField(description='Activar Chelómetro')
 
 
 class ChooseChelaForm(Form):

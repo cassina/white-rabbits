@@ -1,0 +1,11 @@
+{% include 'bootstrap/base.html' %}
+
+{% block title %}
+    <title>Chelometro</title>
+{% endblock %}
+
+{% block styles %}
+    {{ super }}
+    <link href="{{ url_for('static', filename='css/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto' rel='stylesheet' type='text/css'>
+{% endblock %}
