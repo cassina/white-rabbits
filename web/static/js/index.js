@@ -9,14 +9,16 @@
 
             FB.getLoginStatus(function(response) {
                 console.log("login status: ", response)
-                if (response.status === 'connected') {
-                    console.log('Logged in.');
-                    loggedIn(response.authResponse);
+                function changed() {
+                  if (response.status === 'connected') {
+                      console.log('Logged in.');
+                      loggedIn(response.authResponse);
+                  }
                 }
-                else {
-                    FB.login({scope: 'email,user_events', return_scopes: true});
-                }
+                FB.Event.subscribe('auth.authResponseChanged', changed);
+                FB.login(function() {}, {scope: 'email,user_events', return_scopes: true});
             });
+
         };
 
         (function(d, s, id){
