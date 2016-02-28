@@ -37,3 +37,11 @@ def user_choose_chelas(event_id, user_id):
 @events.route('/dashboard/<event_id>')
 def dashboard(event_id):
     return render_template('events_home.html', event_id=event_id)
+
+
+@events.route('/listen')
+def listen():
+    event = EventModel.get_by_id(5634472569470976)
+    event.fb_user_id += '-A'
+    event.put()
+    return 'ok'
