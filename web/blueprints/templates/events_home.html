@@ -16,7 +16,10 @@
     {% endwith %}
 
     <h1>Event Dashboard</h1>
-    <h3>Event ID: {{ event_id }}</h3>
+    <span class="hidden">event.fb_event_id</span>
+    <h3>Ordered confirmed: {{ event.made_request }}</h3>
+    <h3>Date: {{ event.event_time }}</h3>
     <h3>People Attending: 0</h3>
+    <h1>{{ value }}</h1>
 
 {% endblock %}
