@@ -34,9 +34,12 @@ def register():
 
 def parse_time(date_string):
     from dateutil.parser import parse
-    date = parse(date_string, ignoretz=True)
-    return date
+    date = parse(date_string)
+    return local_to_utc(date)
 
+def local_to_utc(datetime):
+    secs = time.mktime(datetime.timetuple())
+    return time.gmtime(secs)
 
 @events.route('/<event_id>/<user_id>')
 def user_choose_chelas(event_id, user_id):
