@@ -1,3 +1,7 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block scripts %}
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script>
   window.fbAsyncInit = function() {
@@ -33,15 +37,10 @@
      $('input[name="fb_user_id"]').val(authResponse.userID);
      $('#avatar').attr('src', avatar);
    }
-
-
 </script>
+{% endblock %}
 
-<h1>Hola<h1>
 
-
-<form action="">
-  <img id="avatar" src="" />
-  <input name="fb_url" />
-  <input type="hidden" name="fb_user_id" />
-</form>
+{% block content %}
+    {{ wtf.quick_form(form, action=url_for('events.register')) }}
+{% endblock %}
