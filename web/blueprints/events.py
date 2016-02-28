@@ -76,8 +76,9 @@ def send_notification(event, user_id):
       'debug': 'all',
       'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET),
       'type': 'generic',
-      'template': message,
+      'template': message[:180],
       'href': href
     }
+
 
     return requests.request('POST', notification_url, data=data)
