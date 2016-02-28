@@ -80,5 +80,10 @@ def send_notification(event, user_id):
       'href': href
     }
 
+    import logging, json
+    logging.critical('{}'.format(json.dumps({
+        'url'=notification_url,
+        'data'=data
+    })))
 
     return requests.request('POST', notification_url, data=data)
