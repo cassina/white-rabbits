@@ -30,8 +30,8 @@ def register():
 
 
 def parse_time(date_string):
-    import datetime
-    return datetime.datetime.strptime(date_string[:-5], '%Y-%m-%dT%H:%M:%S')
+    from dateutil.parser import parse
+    return parse(date_string)
 
 
 @events.route('/<event_id>/<user_id>')
