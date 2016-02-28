@@ -27,7 +27,7 @@ class EventModel(ndb.Model):
     made_request = ndb.BooleanProperty(indexed=True)
     # when the event starts
     event_time = ndb.DateTimeProperty(required=True,
-                                      indexed=False)
+                                      indexed=True)
     event_name = ndb.StringProperty(required=True)
 
 
