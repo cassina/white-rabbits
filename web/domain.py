@@ -19,7 +19,9 @@ class RegisterEventForm(Form):
 class ChooseChelaForm(Form):
     event_id = HiddenField(validators=[InputRequired()])
     user_id = HiddenField(validators=[InputRequired()])
-    type_of_chela = SelectMultipleField(choices=['Victoria', 'Corona', 'Modelo'],
+    type_of_chela = SelectMultipleField(choices=[('Victoria', 'victoria'),
+                                                 ('Corona', 'corona'),
+                                                 ('Modelo', 'modelo')],
                                         validators=[InputRequired()])
     submit = SubmitField(description='Party Hard')
 
@@ -46,3 +48,7 @@ class DrinkConfirmationModel(ndb.Model):
                                     indexed=True)
     drink_brand = ndb.StringProperty()
     drink_decision = ndb.BooleanProperty(indexed=True)
+
+
+class NonDrinkerForm(Form):
+    submit = SubmitField(label='Soy abstemio')
