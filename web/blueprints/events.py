@@ -41,7 +41,7 @@ def dashboard(event_id):
 
 @events.route('/listen')
 def listen():
-    event = EventModel.get_by_id(5715999101812736)
+    event = EventModel.get_by_id(5634472569470976)
     event.fb_user_id += '-A'
     event.put()
     return 'ok'
