@@ -153,8 +153,8 @@ def get_attendants(event_id):
     return requests.request('GET', attendants_url, params=data)
 
 
-@events.route('/culeros')
-def culeros():
+@events.route('/test')
+def test():
     from web.domain import RegisterEventForm
     form = RegisterEventForm()
     return render_template('index.html', form=form)
