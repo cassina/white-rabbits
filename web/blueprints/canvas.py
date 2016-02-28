@@ -13,6 +13,6 @@ def redirect_to_fb_app():
 
 
 @canvas.route('/', methods=['POST'])
-def canvas_home():
+def home():
     form = RegisterEventForm()
     return render_template('index.html', form=form)
