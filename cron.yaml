@@ -1,0 +1,5 @@
+cron:
+- description: listen events
+  url: /events/listen
+  schedule: every 1 minutes
+  login: admin
