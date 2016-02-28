@@ -14,11 +14,11 @@ def register():
         # Try to strip the id value
         try:
             e_id = form.fb_url.data.split('events/')[1]
-        except ValueError:
+        except IndexError:
             flash('Lo sentimos, parece ser que la url '
                   'que registraste no es una url de un '
                   'evento de Facebook valida. Intenta nuevamente')
-            return redirect('canvas.home')
+            return redirect(url_for('canvas.redirect_to_fb_app'))
 
         event = EventModel()
         event.fb_event_id = e_id
