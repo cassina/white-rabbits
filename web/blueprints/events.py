@@ -108,9 +108,14 @@ def send_notification(event, user_id):
 @events.route('/attendants/<event_id>')
 def attendants(event_id):
     response = get_attendants(event_id)
+    event = EventModel.query(EventModel.fb_event_id == event_id)
+    json_r = json.loads(response.text)
+    for user in json_r['data']:
+        send_notification(event, user['id'])
     return response.text
 
 
 def get_attendants(event_id):
-    attendants_url = FACEBOOK_GRAPH_URL + '{event-id}/attending'.format(event_id)
-    return requests.get(attendants_url)
+    data = {'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET)}
+    attendants_url = FACEBOOK_GRAPH_URL + '{id}/attending'.format(id=event_id)
+    return requests.request('GET', attendants_url, params=data)

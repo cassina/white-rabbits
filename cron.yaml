@@ -1,4 +1,4 @@
 cron:
 - description: listen events
   url: /events/listen
-  schedule: every 1 minutes
+  schedule: every 30 minutes
