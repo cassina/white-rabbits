@@ -4,6 +4,7 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/screen.css') }}" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Roboto' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block content %}
@@ -18,14 +19,17 @@
     {% endwith %}
 
     <h3 id="event_name"></h3>
-    <main style="background-image: url('{{ url_for('static', filename='img/partyOn.jpg') }}');">
-        {{ wtf.quick_form(form, action=url_for('events.register')) }}
-        ​
-        <h1>Tú armas la fiesta, nosotros la llevamos.</h1>
-        <p> Despreocupate de las chelas para tu fiesta, el chelometro te sugiere la cantidad ideal
-            con base a la confirmación de tus amigos y te las llevamos bien frías a la dirección
-            de tu evento. ¡Así de fácil!
-        </p>
+    <main>
+
+          ​
+        <section>
+            <h1>Tú armas la fiesta, nosotros la llevamos.</h1>
+            <p> Despreocupate de las chelas para tu fiesta, el chelometro te sugiere la cantidad ideal
+                con base a la confirmación de tus amigos y te las llevamos bien frías a la dirección
+                de tu evento. ¡Así de fácil!
+            </p>
+            {{ wtf.quick_form(form, action=url_for('events.register')) }}
+        </section>
         ​
     </main>
 {% endblock %}

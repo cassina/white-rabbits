@@ -129,7 +129,7 @@ p {
 }
 
 /* line 56, ../../../styles/sass/_index.scss */
-input[type="url"] {
+input[id="fb_url"] {
   width: 90%;
   padding: 0.5em 0 0.5em 1.5em;
   border-radius: 6px;
