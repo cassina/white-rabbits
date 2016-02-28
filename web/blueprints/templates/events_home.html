@@ -2,9 +2,21 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %}
-    Calcool8tor
+    Event Dashboard
 {% endblock %}
-
 {% block content %}
-    {{ wtf.quick_form(form, action=url_for('events.register')) }}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <h1>Event Dashboard</h1>
+    <h3>Event ID: {{ event_id }}</h3>
+    <h3>People Attending: 0</h3>
+
 {% endblock %}
