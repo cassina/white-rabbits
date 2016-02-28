@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask_wtf import Form
-from wtforms.fields import StringField, SubmitField, HiddenField, SelectMultipleField
+from wtforms.fields import StringField, SubmitField, HiddenField, SelectField
 from wtforms.validators import InputRequired
 from google.appengine.ext import ndb
 
@@ -19,10 +19,11 @@ class RegisterEventForm(Form):
 class ChooseChelaForm(Form):
     event_id = HiddenField(validators=[InputRequired()])
     user_id = HiddenField(validators=[InputRequired()])
-    type_of_chela = SelectMultipleField(choices=[('Victoria', 'victoria'),
-                                                 ('Corona', 'corona'),
-                                                 ('Modelo', 'modelo')],
-                                        validators=[InputRequired()])
+    drink_brand = SelectField(choices=[('Victoria', 'victoria'),
+                                       ('Corona', 'corona'),
+                                       ('Modelo', 'modelo')],
+                              validators=[InputRequired()],
+                              coerce=str)
     submit = SubmitField(description='Party Hard')
 
 
@@ -46,9 +47,5 @@ class DrinkConfirmationModel(ndb.Model):
                                      indexed=True)
     fb_user_id = ndb.StringProperty(required=True,
                                     indexed=True)
-    drink_brand = ndb.StringProperty()
-    drink_decision = ndb.BooleanProperty(indexed=True)
+    drink_brand = ndb.StringProperty(required=True)
 
-
-class NonDrinkerForm(Form):
-    submit = SubmitField(label='Soy abstemio')

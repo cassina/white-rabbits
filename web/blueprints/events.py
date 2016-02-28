@@ -9,7 +9,7 @@ import time
 from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
 
-from web.domain import RegisterEventForm, EventModel, DrinkConfirmationModel, ChooseChelaForm, NonDrinkerForm
+from web.domain import RegisterEventForm, EventModel, DrinkConfirmationModel, ChooseChelaForm
 from secrets import FB_APP_ID, FB_APP_SECRET
 
 events = Blueprint('events', __name__, template_folder='templates')
@@ -53,12 +53,10 @@ def local_to_utc(date_time):
 
 @events.route('/<event_id>/<user_id>', methods=['POST'])
 def user_choose_chelas(event_id, user_id):
-    form = ChooseChelaForm()
-    form.user_id.data = user_id
-    form.event_id.data = event_id
     conf = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == user_id).get()
+    form = ChooseChelaForm(obj=conf)
     if form.validate_on_submit():
-        conf.drink_brand = form.type_of_chela.data
+        conf.drink_brand = form.drink_brand.data
         conf.put()
         return 'Thank you'
     return render_template('choose_chelas.html', form=form)
