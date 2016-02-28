@@ -2,6 +2,20 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
-    <h1>Thank you for using the app</h1>
-    <a href="#">Ir al evento</a><a href="#">Ir a Modelo Now</a>
+    <main>​
+        <section>
+            <figure>
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Chelometro">
+            </figure>
+            <h1>¡Gracias por utilizar Chelometro!</h1>
+            <p>Esperamos que te diviertas en tu evento. Te invitamos a descargar la aplicación
+                de Modelo Now para pedir cervezas a domicilio.</p>
+            <div>
+                <a class="android" href="https://play.google.com/store/apps/details?id=com.cerveceriamodelo.modelonow&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img alt="Descargalo en Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/es-419-play-badge-border.png" /></a>
+                <a class="ios" href="https://itunes.apple.com/mx/app/modelonow-2.0/id1070070438?mt=8"><img alt="Descargalo en la App Store" src="../img/appstore.png" /></a>
+            </div>
+            <!-- <button type="submit">Cerrar ventana</button> -->
+        </section>
+    </main>
 {% endblock %}
+​

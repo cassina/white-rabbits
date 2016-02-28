@@ -1,0 +1,77 @@
+body {
+  height: 100vh;
+  text-align: center;
+}
+​
+main {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+  &::before {
+    content: "";
+    background-image: url(../img/pattern.png);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+​
+figure {
+  max-width: 230px;
+}
+​
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  padding: 0 2.5em;
+  height: 100vh;
+  align-items: center;
+}
+​
+h1 {
+  font-weight: normal;
+  font-style: normal;
+  color: white;
+  padding: 0.2em;
+  letter-spacing: 1px;
+}
+​
+p {
+  color: white;
+  line-height: 1.7em;
+}
+​
+input[type="url"] {
+  width: 90%;
+  padding: 0.5em 0 0.5em 1.5em;
+  border-radius: 6px;
+  border: 1px solid #6583cc;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+  margin: 1em;
+  font-size: 15px;
+}
+​
+button {
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  border: 1px solid #6583cc;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+  margin: 1em;
+  background-color: #f29b2a;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+​
+img {
+  width: 100%;
+  height: auto;
+  display: inherit;
+}
