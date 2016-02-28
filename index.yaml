@@ -1,0 +1,8 @@
+indexes:
+
+- kind: EventModel
+  properties:
+  - name: fb_event_id
+  - name: fb_user_id
+  - name: made_request
+  - name: event_time

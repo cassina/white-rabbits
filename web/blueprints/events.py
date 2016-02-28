@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import json
 
 from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
@@ -55,7 +56,7 @@ def listen():
     # Queries Datastore every minute
     event_list = EventModel.query(ndb.AND(EventModel.event_time >= datetime.datetime.now(),
                                           EventModel.made_request == False)).fetch()
-    return len(event_list)
+    return json.dumps(event_list)
 
 
 @events.route('/notify/<event_id>/<user_id>')
