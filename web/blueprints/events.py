@@ -38,11 +38,10 @@ def parse_time(date_string):
     date = parse(date_string)
     return local_to_utc(date)
 
-
-def local_to_utc(date_time):
-    secs = time.mktime(date_time.timetuple())
-    return time.gmtime(secs)
-
+def local_to_utc(datetime):
+    secs = time.mktime(datetime.timetuple())
+    struct = time.gmtime(secs)
+    return datetime.fromtimestamp(time.mktime(struct))
 
 @events.route('/<event_id>/<user_id>')
 def user_choose_chelas(event_id, user_id):
