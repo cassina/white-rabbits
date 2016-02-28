@@ -36,5 +36,5 @@ class DrinkConfirmationModel(ndb.Model):
                                      indexed=True)
     fb_user_id = ndb.StringProperty(required=True,
                                     indexed=True)
-    drink_brand = ndb.StringProperty(required=True)
-    drink_decision = ndb.BooleanProperty(required=True, indexed=True)
+    drink_brand = ndb.StringProperty()
+    drink_decision = ndb.BooleanProperty(indexed=True)

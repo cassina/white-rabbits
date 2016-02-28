@@ -9,7 +9,7 @@ import time
 from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
 
-from web.domain import RegisterEventForm, EventModel
+from web.domain import RegisterEventForm, EventModel, DrinkConfirmationModel
 from secrets import FB_APP_ID, FB_APP_SECRET
 
 events = Blueprint('events', __name__, template_folder='templates')
@@ -46,7 +46,7 @@ def local_to_utc(date_time):
     return date_time.fromtimestamp(time.mktime(struct))
 
 
-@events.route('/<event_id>/<user_id>')
+@events.route('/<event_id>/<user_id>', methods=['POST'])
 def user_choose_chelas(event_id, user_id):
     return render_template('choose_chelas.html', event_id=event_id, user_id=user_id)
 
@@ -78,7 +78,7 @@ def query_active_events():
 
 @events.route('/notify/<event_id>/<user_id>')
 def send_event_notification(event_id, user_id):
-    event = EventModel.query(EventModel.fb_event_id == event_id).fetch()[0]
+    event = EventModel.query(EventModel.fb_event_id == event_id).get()
     print(event)
     response = send_notification(event, user_id)
     return response.text
@@ -109,10 +109,17 @@ def send_notification(event, user_id):
 @events.route('/attendants/<event_id>')
 def attendants(event_id):
     response = get_attendants(event_id)
-    event = EventModel.query(EventModel.fb_event_id == event_id)
+    event = EventModel.query(EventModel.fb_event_id == event_id).get()
     json_r = json.loads(response.text)
-    for user in json_r['data']:
-        send_notification(event, user['id'])
+    ids = [user['id'] for user in json_r['data']]
+    confirmations = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_event_id == event_id).fetch()
+    confirmation_ids = [c.fb_user_id for c in confirmations]
+
+    pending_ids = set(ids).difference(set(confirmation_ids))
+
+    for id in pending_ids:
+        send_notification(event, user_id=id)
+
     return response.text
 
 
