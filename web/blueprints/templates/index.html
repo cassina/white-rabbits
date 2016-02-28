@@ -18,8 +18,21 @@
     {% endwith %}
 
     <h3 id="event_name"></h3>
-
-    {{ wtf.quick_form(form, action=url_for('events.register')) }}
+    <main style="background-image: url('{{ url_for('static', filename='img/partyOn.jpg') }}');">
+        ​
+        <section>
+            <figure>
+                <img src="{{ url_for('/static'), filename='img/logo.png') }}" alt="Chelometro">
+            </figure>
+            <h1>Tú armas la fiesta, nosotros la llevamos.</h1>
+            <p>Despreocupate de las chelas para tu fiesta, el chelometro te sugiere la cantidad ideal
+                con base a la confirmación de tus amigos y te las llevamos bien frías a la dirección
+                de tu evento. ¡Así de fácil!
+            </p>
+            {{ wtf.quick_form(form, action=url_for('events.register')) }}
+        </section>
+        ​
+    </main>
 {% endblock %}
 
 {% block scripts %}
