@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 
+from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
 
 from web.domain import RegisterEventForm, EventModel
@@ -52,11 +53,10 @@ def dashboard(event_id):
 @events.route('/listen')
 def listen():
     # Queries Datastore every minute
-    query = EventModel.query()
-    q1 = query.filter(EventModel.made_request == False)
-    q2 = query.filter(EventModel.created <= datetime.datetime.now())
-    event_list = query.fetch()
-    return str(event_list)
+    event_list = EventModel.query(ndb.AND(EventModel.event_time >= datetime.datetime.now(),
+                                          EventModel.made_request == False)).fetch()
+    return len(event_list)
+
 
 @events.route('/notify/<event_id>/<user_id>')
 def send_event_notification(event_id, user_id):

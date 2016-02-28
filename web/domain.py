@@ -28,9 +28,11 @@ class EventModel(ndb.Model):
     # true when event owner has ordered drinks
     made_request = ndb.BooleanProperty(indexed=True)
     # when the event starts
-    event_time = ndb.DateTimeProperty(required=True)
+    event_time = ndb.DateTimeProperty(required=True,
+                                      indexed=False)
     event_name = ndb.StringProperty(required=True,
                                     indexed=True)
+
 
 class DrinkConfirmationModel(ndb.Model):
     fb_event_id = ndb.StringProperty(required=True,
