@@ -175,3 +175,5 @@ docs/_build/
 # PyBuilder
 target/
 
+
+secrets.py
