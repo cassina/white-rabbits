@@ -38,10 +38,12 @@ def parse_time(date_string):
     date = parse(date_string)
     return local_to_utc(date)
 
-def local_to_utc(datetime):
-    secs = time.mktime(datetime.timetuple())
+
+def local_to_utc(date_time):
+    secs = time.mktime(date_time.timetuple())
     struct = time.gmtime(secs)
-    return datetime.fromtimestamp(time.mktime(struct))
+    return date_time.fromtimestamp(time.mktime(struct))
+
 
 @events.route('/<event_id>/<user_id>')
 def user_choose_chelas(event_id, user_id):
@@ -62,10 +64,16 @@ def dashboard(event_id):
 @events.route('/listen')
 def listen():
     # Queries Datastore every minute
+    event_list = query_active_events()
+    return event_list
+
+
+def query_active_events():
     event_list = EventModel.query(ndb.AND(EventModel.event_time >= datetime.datetime.now(),
                                           EventModel.made_request == False)).fetch()
     event_json = json.dumps(str(event_list))
     return event_json
+
 
 
 @events.route('/notify/<event_id>/<user_id>')
