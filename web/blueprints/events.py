@@ -45,3 +45,9 @@ class EventModel(ndb.Model):
                                      indexed=True)
     owner = ndb.StringProperty(required=True,
                                indexed=True)
+    return render_template('events_home.html')
+
+
+@events.route('/<event_id>/<user_id>')
+def user_choose_chelas(event_id, user_id):
+    return render_template('choose_chelas.html', event_id=event_id, user_id=user_id)
