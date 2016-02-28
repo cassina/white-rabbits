@@ -28,7 +28,7 @@ def register():
     event.fb_user_token = form.fb_user_token.data
     event.made_request = False
     event.event_name = form.event_name.data
-    event.event_time = form.event_time.data
+    event.event_time = parse_time(form.event_time.data)
     event.put()
     flash('Thank you for registering your Facebook event!')
     return redirect(url_for('events.dashboard', event_id=event.fb_event_id))
