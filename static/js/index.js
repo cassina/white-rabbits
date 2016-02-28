@@ -14,7 +14,7 @@
                     loggedIn(response.authResponse);
                 }
                 else {
-                    FB.login();
+                    FB.login({scope: 'email,user_events', return_scopes: true});
                 }
             });
         };
