@@ -53,7 +53,7 @@ p {
   line-height: 1.7em;
 }
 
-input[type="url"] {
+input[id="fb_url"] {
   width: 90%;
   padding: 0.5em 0 0.5em 1.5em;
   border-radius: 6px;
@@ -82,3 +82,4 @@ img {
   height: auto;
   display: inherit;
 }
+
