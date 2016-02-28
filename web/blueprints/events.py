@@ -111,12 +111,19 @@ def attendants(event_id):
     response = get_attendants(event_id)
     event = EventModel.query(EventModel.fb_event_id == event_id).get()
     json_r = json.loads(response.text)
+
     attending_ids = [user['id'] for user in json_r['data']]
     already_sent = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_event_id == event_id).fetch()
     sent_user_ids = [c.fb_user_id for c in already_sent]
     pending_ids = set(attending_ids) - set(sent_user_ids)
+
+    new_ones = []
     for user_id in pending_ids:
         send_notification(event, user_id=user_id)
+        confirmation = DrinkConfirmationModel(fb_event_id=event_id, fb_user_id=user_id)
+        new_ones.append(confirmation)
+
+    ndb.put_multi(new_ones)
     return response.text
 
 
