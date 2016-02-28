@@ -55,8 +55,7 @@ def send_event_notification(event_id, user_id):
 
 
 def send_notification(event, user_id):
-    message = '@[{author}] invites you to choose your drinks for {event}'.
-        format(author=event.fb_user_id, event=event.event_name)
+    message = '@[{author}] invites you to choose your drinks for {event}'.format(author=event.fb_user_id, event=event.event_name)
 
     href = 'events/{}/{}'.format(event.fb_event_id, user_id)
 
