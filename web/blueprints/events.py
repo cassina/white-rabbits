@@ -68,6 +68,9 @@ def confirm_chelas():
         confirmation = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == form.user_id.data).get()
         confirmation.drink_brand = form.drink_brand.data
         confirmation.put()
+        event = EventModel.query(EventModel.fb_event_id == form.event_id.data).get()
+        event.drinking_people += 1
+        event.put()
         return render_template('thank_you.html')
 
 
@@ -131,8 +134,9 @@ def attendants(event_id):
 def send_attendants_notifications(event):
     event_id = event.fb_event_id
     response = get_attendants(event_id)
+    log(response)
     json_r = json.loads(response.text)
-
+    log(json_r)
     attending_ids = [user['id'] for user in json_r['data']]
     already_sent = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_event_id == event_id).fetch()
     sent_user_ids = [c.fb_user_id for c in already_sent]
@@ -147,8 +151,10 @@ def send_attendants_notifications(event):
     ndb.put_multi(new_ones)
     return response.text
 
+
 def get_attendants(event_id):
     data = {'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET)}
+    log(data)
     attendants_url = FACEBOOK_GRAPH_URL + '{id}/attending'.format(id=event_id)
     return requests.request('GET', attendants_url, params=data)
 
