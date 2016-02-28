@@ -70,10 +70,11 @@ def confirm_chelas():
         confirmation.put()
         return 'Thank you'
 
+
 @events.route('/dashboard/<event_id>')
 def dashboard(event_id):
     event = EventModel.query(EventModel.fb_event_id == event_id).get()
-    return render_template('events_home.html', event=event)
+    return render_template('event_dashboard.html', event=event)
 
 
 def log(thing):
