@@ -14,6 +14,7 @@ from secrets import FB_APP_ID, FB_APP_SECRET
 
 events = Blueprint('events', __name__, template_folder='templates')
 
+FACEBOOK_GRAPH_URL = 'https://graph.facebook.com/v2.5/'
 
 @events.route('/register', methods=['POST'])
 def register():
@@ -75,7 +76,6 @@ def query_active_events():
     return event_json
 
 
-
 @events.route('/notify/<event_id>/<user_id>')
 def send_event_notification(event_id, user_id):
     event = EventModel.query(EventModel.fb_event_id == '1051962044842399').get()
@@ -88,7 +88,7 @@ def send_notification(event, user_id):
 
     href = 'events/{}/{}'.format(event.fb_event_id, user_id)
 
-    notification_url = "https://graph.facebook.com/v2.5/{user_id}/notifications".format(user_id=user_id)
+    notification_url = FACEBOOK_GRAPH_URL + "{user_id}/notifications".format(user_id=user_id)
     data = {
       'debug': 'all',
       'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET),
@@ -103,3 +103,14 @@ def send_notification(event, user_id):
     }))
 
     return requests.request('POST', notification_url, data=data)
+
+
+@events.route('/attendants/<event_id>')
+def attendants(event_id):
+    response = get_attendants(event_id)
+    return response.text
+
+
+def get_attendants(event_id):
+    attendants_url = FACEBOOK_GRAPH_URL + '{event-id}/attending'.format(event_id)
+    return requests.get(attendants_url)
