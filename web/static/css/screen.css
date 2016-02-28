@@ -67,6 +67,99 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
+/* line 1, ../../../styles/sass/_index.scss */
+body {
+  height: 100vh;
+  text-align: center;
+  font-family: 'roboto';
+}
+
+/* line 7, ../../../styles/sass/_index.scss */
+main {
+  background-image: url(../img/partyOn.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+/* line 13, ../../../styles/sass/_index.scss */
+main::before {
+  content: "";
+  background-image: url(../img/pattern.png);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* line 24, ../../../styles/sass/_index.scss */
+figure {
+  max-width: 230px;
+}
+
+/* line 29, ../../../styles/sass/_index.scss */
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  padding: 0 2.5em;
+  height: 100vh;
+  align-items: center;
+}
+
+/* line 41, ../../../styles/sass/_index.scss */
+h1 {
+  font-family: 'bebas_neuebold';
+  font-weight: normal;
+  font-style: normal;
+  color: white;
+  padding: 0.2em;
+  letter-spacing: 1px;
+}
+
+/* line 50, ../../../styles/sass/_index.scss */
+p {
+  font-family: 'roboto';
+  color: white;
+  line-height: 1.7em;
+}
+
+/* line 56, ../../../styles/sass/_index.scss */
+input[type="url"] {
+  width: 90%;
+  padding: 0.5em 0 0.5em 1.5em;
+  border-radius: 6px;
+  border: 1px solid #6583cc;
+  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.5);
+  margin: 1em;
+  font-size: 15px;
+}
+
+/* line 67, ../../../styles/sass/_index.scss */
+button {
+  font-family: 'roboto condensed';
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  border: 1px solid #6583cc;
+  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.5);
+  margin: 1em;
+  background-color: #f29b2a;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* line 80, ../../../styles/sass/_index.scss */
+img {
+  width: 100%;
+  height: auto;
+  display: inherit;
+}
+
 /* line 1, ../../../styles/sass/_thankyou.scss */
 body {
   height: 100vh;
