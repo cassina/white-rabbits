@@ -3,6 +3,8 @@ import datetime
 import json
 import logging
 import requests
+from dateutil.parser import parse
+import time
 
 from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
@@ -33,7 +35,6 @@ def register():
 
 
 def parse_time(date_string):
-    from dateutil.parser import parse
     date = parse(date_string)
     return local_to_utc(date)
 
@@ -63,7 +64,7 @@ def listen():
     # Queries Datastore every minute
     event_list = EventModel.query(ndb.AND(EventModel.event_time >= datetime.datetime.now(),
                                           EventModel.made_request == False)).fetch()
-    event_json = json(str(event_list))
+    event_json = json.dumps(str(event_list))
     return event_json
 
 
