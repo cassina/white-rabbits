@@ -34,7 +34,8 @@ def register():
 
 def parse_time(date_string):
     from dateutil.parser import parse
-    return parse(date_string)
+    date = parse(date_string, ignoretz=True)
+    return date
 
 
 @events.route('/<event_id>/<user_id>')

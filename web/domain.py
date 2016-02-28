@@ -30,6 +30,30 @@ class EventModel(ndb.Model):
                                       indexed=True)
     event_name = ndb.StringProperty(required=True)
 
+    def to_document(self):
+        return search.Document(doc_id=self.key.id(),
+                               fields=[search.TextField(name='hook',
+                                                        value=self.hook),
+                                       search.TextField(name='synopsis',
+                                                        value=self.synopsis),
+                                       search.TextField(name='title',
+                                                        value=self.title),
+                                       ])
+
+    @classmethod
+    def get_index(cls):
+        return search.Index(name=cls.__name__)
+
+    def put(self):
+        try:
+            self.get_index().put(self.to_document())
+        except search.Error:
+            # If we cannot index it, save it for a later cron job
+            self.needsIndexing = True
+
+        # Now save the model to db
+        return super(BookModel, self).put()
+
 
 class DrinkConfirmationModel(ndb.Model):
     fb_event_id = ndb.StringProperty(required=True,
