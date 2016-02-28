@@ -60,9 +60,9 @@ def listen():
 
 @events.route('/notify/<event_id>/<user_id>')
 def send_event_notification(event_id, user_id):
-    event = EventModel.get_by_id(5634472569470976)
+    event = EventModel.query(EventModel.fb_event_id == '1051962044842399').get()
     response = send_notification(event, user_id)
-    return response.body
+    return response.text
 
 
 def send_notification(event, user_id):
@@ -73,6 +73,7 @@ def send_notification(event, user_id):
     import requests
     notification_url = "https://graph.facebook.com/v2.5/{user_id}/notifications".format(user_id=user_id)
     data = {
+      'debug': 'all',
       'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET),
       'type': 'generic',
       'template': message,
