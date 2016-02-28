@@ -113,7 +113,7 @@ def send_notification(event, user_id):
 
 @events.route('/attendants/<event_id>')
 def attendants(event_id):
-    event = EventModel.query(EventModel.fb_event_id == event_id).get()
+    event = EventModel.query(EventModel.fb_event_id == event_id).fetch()[0]
     send_attendants_notifications(event)
     return 'ok'
 
