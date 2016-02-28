@@ -40,6 +40,7 @@ class EventModel(ndb.Model):
     event_time = ndb.DateTimeProperty(required=True,
                                       indexed=True)
     event_name = ndb.StringProperty(required=True)
+    drinking_people = ndb.IntegerProperty(default=0)
 
 
 class DrinkConfirmationModel(ndb.Model):
