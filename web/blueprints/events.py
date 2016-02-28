@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint, redirect, url_for, render_template
 
 from web.domain import RegisterEventForm, EventModel
 
@@ -16,17 +16,6 @@ def register():
         event.fb_user_id = form.fb_user_id.data
         event.put()
         return redirect(url_for('canvas.home'))
-
-class EventModel(ndb.Model):
-    created = ndb.DateTimeProperty(auto_now_add=True,
-                                   indexed=True)
-    url = ndb.StringProperty(required=True,
-                                      indexed=True)
-    fb_id = ndb.StringProperty(required=True,
-                                     indexed=True)
-    owner = ndb.StringProperty(required=True,
-                               indexed=True)
-    return render_template('events_home.html')
 
 
 @events.route('/<event_id>/<user_id>')
