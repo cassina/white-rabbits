@@ -54,12 +54,12 @@ def local_to_utc(date_time):
 @events.route('/<event_id>/<user_id>', methods=['POST'])
 def user_choose_chelas(event_id, user_id):
     form = ChooseChelaForm()
-    form.event_id = event_id
-    form.user_id = user_id
+    form.event_id.data = event_id
+    form.user_id.data = user_id
     return render_template('choose_chelas.html', form=form)
 
 
-@events.route('/confirm_chelas')
+@events.route('/confirm_chelas', methods=['POST'])
 def confirm_chelas():
     form = request.form
     confirmation = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == request.form.user_id).get()
