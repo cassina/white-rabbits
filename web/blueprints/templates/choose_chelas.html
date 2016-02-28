@@ -1,28 +1,8 @@
-Cuantas chelas te vas a tomar?
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
+{% block content %}
+    {{ wtf.quic_form(form) }}
+    <button type="submit" name="abstemio">Soy Abstemio</button>
+{% endblock %}
 
-<form>
-  <ul>
-    <li>
-       <label>Victoria</label>
-       <img src="http://media-cdn.tripadvisor.com/media/photo-s/0a/40/d5/e0/chela-modelo-8-6.jpg">
-       <input type="radio" value="victoria" />
-    </li>
-    <li>
-       <label>Corona</label>
-       <img src="http://media-cdn.tripadvisor.com/media/photo-s/0a/40/d5/e0/chela-modelo-8-6.jpg">
-       <input type="radio" value="corona" />
-    </li>
-    <li>
-       <label>Stella</label>
-       <img src="http://media-cdn.tripadvisor.com/media/photo-s/0a/40/d5/e0/chela-modelo-8-6.jpg">
-       <input type="radio" value="stella" />
-    </li>
-  </ul>
-
-  <input type="hidden" name="event_id" value="{{event_id}}">
-  <input type="hidden" name="user_id" value="{{user_id}}">
-
-  <button type="submit" name="abstemio">Soy Abstemio</button>
-  <button type="submit">Party HAAAARD!</button>
-</form>
