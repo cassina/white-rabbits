@@ -24,6 +24,10 @@ def register():
     if not form.validate_on_submit():
         return redirect(url_for('canvas.redirect_to_fb_app'))        
 
+    found = EventModel.query(EventModel.fb_event_id == form.fb_event_id.data).fetch()
+    if len(found) > 0:
+        return redirect(url_for('events.dashboard', event_id=event.fb_event_id))
+
     event = EventModel()
     event.fb_event_id = form.fb_event_id.data
     event.fb_user_id = form.fb_user_id.data
@@ -89,7 +93,6 @@ def send_event_notification(event_id, user_id):
 
 def send_notification(event, user_id):
     message = u'@[{author}] invites you to choose your drinks for {event}'.format(author=event.fb_user_id, event=event.event_name)
-
     href = 'events/{}/{}'.format(event.fb_event_id, user_id)
 
     notification_url = FACEBOOK_GRAPH_URL + "{user_id}/notifications".format(user_id=user_id)
