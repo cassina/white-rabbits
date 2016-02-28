@@ -4,6 +4,7 @@ import json
 import logging
 import requests
 from dateutil.parser import parse
+from dateutil import tz
 import time
 
 from google.appengine.ext import ndb
@@ -46,9 +47,10 @@ def parse_time(date_string):
 
 
 def local_to_utc(date_time):
-    secs = time.mktime(date_time.timetuple())
-    struct = time.gmtime(secs)
-    return date_time.fromtimestamp(time.mktime(struct))
+    return datetime.datetime.fromtimestamp(time.mktime(date_time.utctimetuple()))
+    #secs = time.mktime(date_time.timetuple())
+    #struct = time.gmtime(secs)
+    #return date_time.fromtimestamp(time.mktime(struct))
 
 
 @events.route('/<event_id>/<user_id>', methods=['POST'])
@@ -75,10 +77,15 @@ def dashboard(event_id):
     return render_template('event_dashboard.html', event=event)
 
 
+def log(thing):
+    logging.critical('{}'.format(thing))
+
+
 @events.route('/listen')
 def listen():
     # Queries Datastore every minute
     for event in query_active_events():
+        log(event)
         send_attendants_notifications(event)
     return 'ok'
 
@@ -109,7 +116,9 @@ def send_notification(event, user_id):
       'href': href
     }
 
-    return requests.request('POST', notification_url, data=data)
+    response = requests.request('POST', notification_url, data=data)
+    log(response.text)
+    return response
 
 
 @events.route('/attendants/<event_id>')
