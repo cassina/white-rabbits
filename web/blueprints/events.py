@@ -134,8 +134,9 @@ def attendants(event_id):
 def send_attendants_notifications(event):
     event_id = event.fb_event_id
     response = get_attendants(event_id)
+    log(response)
     json_r = json.loads(response.text)
-    print(json_r)
+    log(json_r)
     attending_ids = [user['id'] for user in json_r['data']]
     already_sent = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_event_id == event_id).fetch()
     sent_user_ids = [c.fb_user_id for c in already_sent]
@@ -150,10 +151,12 @@ def send_attendants_notifications(event):
     ndb.put_multi(new_ones)
     return response.text
 
+
 def get_attendants(event_id):
     data = {'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET)}
+    log(data)
     attendants_url = FACEBOOK_GRAPH_URL + '{id}/attending'.format(id=event_id)
-    return requests.request('POST', attendants_url, params=data)
+    return requests.request('GET', attendants_url, params=data)
 
 
 @events.route('/test')
