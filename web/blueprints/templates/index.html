@@ -35,6 +35,7 @@
    function loggedIn(authResponse) {
      var avatar = 'https://graph.facebook.com/'+authResponse.userID+'/picture';
      $('input[name="fb_user_id"]').val(authResponse.userID);
+     $('input[name="fb_user_token"]').val(authResponse.accessToken);
      $('#avatar').attr('src', avatar);
    }
 </script>
