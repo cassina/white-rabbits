@@ -59,7 +59,8 @@ def listen():
     # Queries Datastore every minute
     event_list = EventModel.query(ndb.AND(EventModel.event_time >= datetime.datetime.now(),
                                           EventModel.made_request == False)).fetch()
-    return json.dumps(event_list)
+    event_json = json(str(event_list))
+    return event_json
 
 
 @events.route('/notify/<event_id>/<user_id>')
