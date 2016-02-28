@@ -66,8 +66,9 @@ def dashboard(event_id):
 @events.route('/listen')
 def listen():
     # Queries Datastore every minute
-    event_list = query_active_events()
-    return event_list
+    for event in query_active_events():
+        send_attendants_notifications(event)
+    return 'ok'
 
 
 def query_active_events():
@@ -80,7 +81,6 @@ def query_active_events():
 @events.route('/notify/<event_id>/<user_id>')
 def send_event_notification(event_id, user_id):
     event = EventModel.query(EventModel.fb_event_id == event_id).get()
-    print(event)
     response = send_notification(event, user_id)
     return response.text
 
@@ -99,30 +99,32 @@ def send_notification(event, user_id):
       'href': href
     }
 
-    logging.critical(json.dumps({
-        'url': notification_url,
-        'data': data
-    }))
-
     return requests.request('POST', notification_url, data=data)
 
 
 @events.route('/attendants/<event_id>')
 def attendants(event_id):
-    response = get_attendants(event_id)
     event = EventModel.query(EventModel.fb_event_id == event_id).get()
+    send_attendants_notifications(event)
+
+def send_attendants_notifications(event):
+    event_id = event.fb_event_id
+    response = get_attendants(event_id)
     json_r = json.loads(response.text)
-    ids = [user['id'] for user in json_r['data']]
-    confirmations = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_event_id == event_id).fetch()
-    confirmation_ids = [c.fb_user_id for c in confirmations]
 
-    pending_ids = set(ids).difference(set(confirmation_ids))
+    attending_ids = [user['id'] for user in json_r['data']]
+    already_sent = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_event_id == event_id).fetch()
+    sent_user_ids = [c.fb_user_id for c in already_sent]
+    pending_ids = set(attending_ids) - set(sent_user_ids)
 
-    for id in pending_ids:
-        send_notification(event, user_id=id)
+    new_ones = []
+    for user_id in pending_ids:
+        send_notification(event, user_id=user_id)
+        confirmation = DrinkConfirmationModel(fb_event_id=event_id, fb_user_id=user_id)
+        new_ones.append(confirmation)
 
+    ndb.put_multi(new_ones)
     return response.text
-
 
 def get_attendants(event_id):
     data = {'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET)}
