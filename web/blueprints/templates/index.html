@@ -12,6 +12,8 @@
         {% endif %}
     {% endwith %}
 
+    <h3 id="event_name"></h3>
+
     {{ wtf.quick_form(form, action=url_for('events.register')) }}
 {% endblock %}
 
@@ -59,17 +61,21 @@
        function fbUrlChanged() {
          var url = $('input[name="fb_url"]').val();
          var eventID = url.match(/events\/(\d+)/)[1];
-         FB.api('/'+eventID, 'GET', {
-           access_token: userAuth.accessToken
-         }, function () {
-           console.log("EVENT DATA: ", arguments) 
+         FB.api('/'+eventID, function (eventResponse) {
+           if (eventResponse.error) {
+           } else {
+             $('#event_name').text(eventResponse.name);
+             $('input[name="fb_event_id"]').text(eventResponse.id);
+             $('input[name="event_time"]').text(eventResponse.start_time);
+             $('form').prop('disabled', false);
+           }
          })
        }
 
        function init () {
          $('form').prop('disabled', true);
          $('input[name="fb_url"]').prop('disabled', true);
-         $('input[name="fb_url"]').on('change', fbUrlChanged);
+         $('input[name="fb_url"]').on('change blur', fbUrlChanged);
        }
 
        $(init);

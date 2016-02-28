@@ -8,6 +8,7 @@ from google.appengine.ext import ndb
 class RegisterEventForm(Form):
     fb_url = StringField(description='Please paste de Facebook Event url Here',
                          validators=[InputRequired()])
+    fb_event_id = HiddenField(validators=[InputRequired()])
     fb_user_id = HiddenField(validators=[InputRequired()])
     fb_user_token = HiddenField(validators=[InputRequired()])
     event_time = HiddenField(validators=[InputRequired()])
