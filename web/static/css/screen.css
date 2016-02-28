@@ -3,7 +3,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 5, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -25,56 +25,56 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
-/* line 1, ../../styles/sass/_index.scss */
+/* line 1, ../../../styles/sass/_index.scss */
 body {
   height: 100vh;
   text-align: center;
 }
 
-/* line 5, ../../styles/sass/_index.scss */
+/* line 5, ../../../styles/sass/_index.scss */
 ​
 main {
   background-size: cover;
@@ -82,7 +82,7 @@ main {
   height: 100vh;
   position: relative;
 }
-/* line 11, ../../styles/sass/_index.scss */
+/* line 11, ../../../styles/sass/_index.scss */
 ​
 main::before {
   content: "";
@@ -94,13 +94,13 @@ main::before {
   left: 0;
 }
 
-/* line 21, ../../styles/sass/_index.scss */
+/* line 21, ../../../styles/sass/_index.scss */
 ​
 figure {
   max-width: 230px;
 }
 
-/* line 25, ../../styles/sass/_index.scss */
+/* line 25, ../../../styles/sass/_index.scss */
 ​
 section {
   display: flex;
@@ -114,7 +114,7 @@ section {
   align-items: center;
 }
 
-/* line 37, ../../styles/sass/_index.scss */
+/* line 37, ../../../styles/sass/_index.scss */
 ​
 h1 {
   font-weight: normal;
@@ -124,14 +124,14 @@ h1 {
   letter-spacing: 1px;
 }
 
-/* line 45, ../../styles/sass/_index.scss */
+/* line 45, ../../../styles/sass/_index.scss */
 ​
 p {
   color: white;
   line-height: 1.7em;
 }
 
-/* line 50, ../../styles/sass/_index.scss */
+/* line 50, ../../../styles/sass/_index.scss */
 ​
 input[type="url"] {
   width: 90%;
@@ -143,7 +143,7 @@ input[type="url"] {
   font-size: 15px;
 }
 
-/* line 60, ../../styles/sass/_index.scss */
+/* line 60, ../../../styles/sass/_index.scss */
 ​
 button {
   padding: 0.7em 1.5em;
@@ -157,7 +157,7 @@ button {
   letter-spacing: 1px;
 }
 
-/* line 72, ../../styles/sass/_index.scss */
+/* line 72, ../../../styles/sass/_index.scss */
 ​
 img {
   width: 100%;
@@ -165,7 +165,7 @@ img {
   display: inherit;
 }
 
-/* line 1, ../../styles/sass/_thank_you.scss */
+/* line 1, ../../../styles/sass/_thank_you.scss */
 main {
   background-image: url(../img/partyOn.jpg);
   background-size: cover;
@@ -173,7 +173,7 @@ main {
   height: 100vh;
   position: relative;
 }
-/* line 7, ../../styles/sass/_thank_you.scss */
+/* line 7, ../../../styles/sass/_thank_you.scss */
 main::before {
   content: "";
   background-image: url(../img/pattern.png);
@@ -184,12 +184,12 @@ main::before {
   left: 0;
 }
 
-/* line 18, ../../styles/sass/_thank_you.scss */
+/* line 18, ../../../styles/sass/_thank_you.scss */
 figure {
   max-width: 230px;
 }
 
-/* line 23, ../../styles/sass/_thank_you.scss */
+/* line 23, ../../../styles/sass/_thank_you.scss */
 section {
   display: flex;
   justify-content: center;
@@ -202,7 +202,7 @@ section {
   align-items: center;
 }
 
-/* line 35, ../../styles/sass/_thank_you.scss */
+/* line 35, ../../../styles/sass/_thank_you.scss */
 h1 {
   font-family: 'bebas_neuebold';
   font-weight: normal;
@@ -212,38 +212,197 @@ h1 {
   letter-spacing: 1px;
 }
 
-/* line 44, ../../styles/sass/_thank_you.scss */
+/* line 44, ../../../styles/sass/_thank_you.scss */
 p {
   font-family: 'roboto';
   color: white;
   line-height: 1.7em;
 }
 
-/* line 50, ../../styles/sass/_thank_you.scss */
+/* line 50, ../../../styles/sass/_thank_you.scss */
 img {
   width: 100%;
   height: auto;
   display: inherit;
 }
 
-/* line 56, ../../styles/sass/_thank_you.scss */
+/* line 56, ../../../styles/sass/_thank_you.scss */
 div {
   display: flex;
   justify-content: center;
 }
 @media only screen and (max-width: 560px) {
-  /* line 56, ../../styles/sass/_thank_you.scss */
+  /* line 56, ../../../styles/sass/_thank_you.scss */
   div {
     flex-direction: column;
     align-items: center;
   }
 }
-/* line 63, ../../styles/sass/_thank_you.scss */
+/* line 63, ../../../styles/sass/_thank_you.scss */
 div .android {
   max-width: 35%;
   padding: 3px;
 }
-/* line 67, ../../styles/sass/_thank_you.scss */
+/* line 67, ../../../styles/sass/_thank_you.scss */
 div .ios {
   max-width: 37%;
+}
+
+/* line 1, ../../../styles/sass/_dashboard.scss */
+body {
+  height: 100vh;
+  text-align: center;
+  font-family: 'roboto';
+}
+
+/* line 7, ../../../styles/sass/_dashboard.scss */
+main {
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 4em 0;
+}
+/* line 13, ../../../styles/sass/_dashboard.scss */
+main::before {
+  content: "";
+  background-image: url(../img/pattern.png);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* line 24, ../../../styles/sass/_dashboard.scss */
+figure {
+  max-width: 230px;
+}
+
+/* line 28, ../../../styles/sass/_dashboard.scss */
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 700px;
+  margin: auto;
+  position: relative;
+  padding: 0 2.5em;
+  height: 100vh;
+  align-items: center;
+}
+/* line 38, ../../../styles/sass/_dashboard.scss */
+section .query {
+  display: block;
+}
+/* line 40, ../../../styles/sass/_dashboard.scss */
+section .query figure {
+  margin: auto;
+}
+/* line 44, ../../../styles/sass/_dashboard.scss */
+section .brands {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* line 48, ../../../styles/sass/_dashboard.scss */
+section .brands .beer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  position: relative;
+  padding: 0;
+  align-items: center;
+}
+/* line 58, ../../../styles/sass/_dashboard.scss */
+section .brands .beer__images {
+  max-width: 72px;
+}
+
+/* line 65, ../../../styles/sass/_dashboard.scss */
+h1 {
+  font-family: 'bebas_neuebold';
+  font-weight: normal;
+  font-style: normal;
+  color: white;
+  padding: 0.2em;
+  letter-spacing: 1px;
+}
+
+/* line 74, ../../../styles/sass/_dashboard.scss */
+img {
+  width: 100%;
+  height: auto;
+  display: inherit;
+}
+
+/* line 80, ../../../styles/sass/_dashboard.scss */
+input {
+  margin: 0.5em;
+}
+
+/* line 84, ../../../styles/sass/_dashboard.scss */
+div {
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 560px) {
+  /* line 84, ../../../styles/sass/_dashboard.scss */
+  div {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/* line 91, ../../../styles/sass/_dashboard.scss */
+div .android {
+  max-width: 35%;
+  padding: 3px;
+}
+/* line 95, ../../../styles/sass/_dashboard.scss */
+div .ios {
+  max-width: 37%;
+}
+
+/* line 101, ../../../styles/sass/_dashboard.scss */
+.slider {
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+  width: 100%;
+}
+
+/* line 108, ../../../styles/sass/_dashboard.scss */
+.submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* line 114, ../../../styles/sass/_dashboard.scss */
+button {
+  font-family: 'roboto condensed';
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  border: 1px solid #6583cc;
+  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.5);
+  margin: 1em;
+  background-color: #f29b2a;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+/* line 126, ../../../styles/sass/_dashboard.scss */
+button .pedir {
+  padding: 0 35px;
+}
+
+/* line 130, ../../../styles/sass/_dashboard.scss */
+.gray {
+  background: #dfdfdf;
+  border: 1px solid #CCC;
+  color: #333;
 }

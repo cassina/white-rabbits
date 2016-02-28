@@ -1,0 +1,136 @@
+body {
+  height: 100vh;
+  text-align: center;
+  font-family: 'roboto';
+}
+
+main {
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 4em 0;
+  &::before {
+    content: "";
+    background-image: url(../img/pattern.png);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+figure {
+  max-width: 230px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 700px;
+  margin: auto;
+  position: relative;
+  padding: 0 2.5em;
+  height: 100vh;
+  align-items: center;
+  .query {
+    display: block;
+    figure {
+      margin: auto;
+    }
+  }
+  .brands {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .beer {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      max-width: 600px;
+      margin: auto;
+      position: relative;
+      position: relative;
+      padding: 0;
+      align-items: center;
+      &__images{
+        max-width: 72px;
+      }
+    }
+  }
+}
+
+h1 {
+  font-family: 'bebas_neuebold';
+  font-weight: normal;
+  font-style: normal;
+  color: white;
+  padding: 0.2em;
+  letter-spacing: 1px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: inherit;
+}
+
+input {
+  margin: 0.5em;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  @media only screen and (max-width: 560px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  .android {
+    max-width: 35%;
+    padding: 3px;
+  }
+  .ios {
+    max-width: 37%;
+
+  }
+}
+
+.slider{
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+  width: 100%;
+}
+
+.submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  font-family: 'roboto condensed';
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  border: 1px solid #6583cc;
+  box-shadow: 4px 0px 10px rgba(0,0,0,0.5);
+  margin: 1em;
+  background-color: #f29b2a;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  .pedir {
+    padding: 0 35px;
+  }
+}
+.gray{
+  background: #dfdfdf;
+  border: 1px solid #CCC;
+  color: #333;
+}
+
+

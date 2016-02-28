@@ -157,4 +157,4 @@ def get_attendants(event_id):
 def test():
     from web.domain import RegisterEventForm
     form = RegisterEventForm()
-    return render_template('index.html', form=form)
+    return render_template('event_dashboard.html')
