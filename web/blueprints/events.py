@@ -68,7 +68,7 @@ def confirm_chelas():
         confirmation = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == form.user_id.data).get()
         confirmation.drink_brand = form.drink_brand.data
         confirmation.put()
-        return 'Thank you'
+        return render_template('thank_you.html')
 
 
 @events.route('/dashboard/<event_id>')
@@ -155,6 +155,4 @@ def get_attendants(event_id):
 
 @events.route('/test')
 def test():
-    from web.domain import RegisterEventForm
-    form = RegisterEventForm()
-    return render_template('index.html', form=form)
+    return render_template('thank_you.html')
