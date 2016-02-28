@@ -65,8 +65,9 @@ def dashboard(event_id):
 @events.route('/listen')
 def listen():
     # Queries Datastore every minute
-    event_list = query_active_events()
-    return event_list
+    for event in query_active_events():
+        send_attendants_notifications(event)
+    return 'ok'
 
 
 def query_active_events():
@@ -79,7 +80,6 @@ def query_active_events():
 @events.route('/notify/<event_id>/<user_id>')
 def send_event_notification(event_id, user_id):
     event = EventModel.query(EventModel.fb_event_id == event_id).get()
-    print(event)
     response = send_notification(event, user_id)
     return response.text
 
@@ -98,18 +98,17 @@ def send_notification(event, user_id):
       'href': href
     }
 
-    logging.critical(json.dumps({
-        'url': notification_url,
-        'data': data
-    }))
-
     return requests.request('POST', notification_url, data=data)
 
 
 @events.route('/attendants/<event_id>')
 def attendants(event_id):
-    response = get_attendants(event_id)
     event = EventModel.query(EventModel.fb_event_id == event_id).get()
+    send_attendants_notifications(event)
+
+def send_attendants_notifications(event):
+    event_id = event.fb_event_id
+    response = get_attendants(event_id)
     json_r = json.loads(response.text)
 
     attending_ids = [user['id'] for user in json_r['data']]
@@ -125,7 +124,6 @@ def attendants(event_id):
 
     ndb.put_multi(new_ones)
     return response.text
-
 
 def get_attendants(event_id):
     data = {'access_token': '{}|{}'.format(FB_APP_ID, FB_APP_SECRET)}
