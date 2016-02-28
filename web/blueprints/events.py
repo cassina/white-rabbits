@@ -26,7 +26,7 @@ def register():
 
     found = EventModel.query(EventModel.fb_event_id == form.fb_event_id.data).count()
     if found > 0:
-        return redirect(url_for('events.dashboard', event_id=event.fb_event_id))
+        return redirect(url_for('events.dashboard', event_id=form.fb_event_id.data))
 
     event = EventModel()
     event.fb_event_id = form.fb_event_id.data

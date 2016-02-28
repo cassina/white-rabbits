@@ -59,16 +59,20 @@
          
          var eventID = eventMatch[1];
 
-         FB.api('/'+eventID, function (eventResponse) {
+         var params = {access_token: userAuth.accessToken};
+         FB.api('/'+eventID, 'GET', params, function (eventResponse) {
            if (eventResponse.error) {
+
+             $('form,[type="submit"]').prop('disabled', true);
              console.log("eventResponse ERROR", eventResponse);
-           } else {
-             $('#event_name').text(eventResponse.name);
-             $('input[name="event_name"]').val(eventResponse.name);
-             $('input[name="fb_event_id"]').val(eventResponse.id);
-             $('input[name="event_time"]').val(eventResponse.start_time);
-             enable();
-           }
+             return;
+           } 
+
+           $('#event_name').text(eventResponse.name);
+           $('input[name="event_name"]').val(eventResponse.name);
+           $('input[name="fb_event_id"]').val(eventResponse.id);
+           $('input[name="event_time"]').val(eventResponse.start_time);
+           enable();
          })
        }
 
