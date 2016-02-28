@@ -12,6 +12,8 @@
         {% endif %}
     {% endwith %}
 
+    <h3 id="event_name"></h3>
+
     {{ wtf.quick_form(form, action=url_for('events.register')) }}
 {% endblock %}
 
@@ -45,12 +47,37 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
+       var userAuth;
 
-        function loggedIn(authResponse) {
-            var avatar = 'https://graph.facebook.com/'+authResponse.userID+'/picture';
-            $('input[name="fb_user_id"]').val(authResponse.userID);
-            $('input[name="fb_user_token"]').val(authResponse.accessToken);
-            $('#avatar').attr('src', avatar);
-        }
-    </script>
+       function loggedIn(authResponse) {
+         userAuth = authResponse;
+         var avatar = 'https://graph.facebook.com/'+authResponse.userID+'/picture';
+         $('input[name="fb_url"]').prop('disabled', false);
+         $('input[name="fb_user_id"]').val(authResponse.userID);
+         $('input[name="fb_user_token"]').val(authResponse.accessToken);
+         $('#avatar').attr('src', avatar);
+       }
+
+       function fbUrlChanged() {
+         var url = $('input[name="fb_url"]').val();
+         var eventID = url.match(/events\/(\d+)/)[1];
+         FB.api('/'+eventID, function (eventResponse) {
+           if (eventResponse.error) {
+           } else {
+             $('#event_name').text(eventResponse.name);
+             $('input[name="fb_event_id"]').text(eventResponse.id);
+             $('input[name="event_time"]').text(eventResponse.start_time);
+             $('form').prop('disabled', false);
+           }
+         })
+       }
+
+       function init () {
+         $('form').prop('disabled', true);
+         $('input[name="fb_url"]').prop('disabled', true);
+         $('input[name="fb_url"]').on('change blur', fbUrlChanged);
+       }
+
+       $(init);
+</script>
 {% endblock %}
