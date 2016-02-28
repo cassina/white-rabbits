@@ -11,6 +11,7 @@ class RegisterEventForm(Form):
     fb_event_id = HiddenField(validators=[InputRequired()])
     fb_user_id = HiddenField(validators=[InputRequired()])
     fb_user_token = HiddenField(validators=[InputRequired()])
+    event_name = HiddenField(validators=[InputRequired()])
     event_time = HiddenField(validators=[InputRequired()])
     submit = SubmitField()
 
@@ -26,10 +27,10 @@ class EventModel(ndb.Model):
                                     indexed=True)
     # true when event owner has ordered drinks
     made_request = ndb.BooleanProperty(indexed=True)
-
     # when the event starts
     event_time = ndb.DateTimeProperty(required=True)
-
+    event_name = ndb.StringProperty(required=True,
+                                    indexed=True)
 
 class DrinkConfirmationModel(ndb.Model):
     fb_event_id = ndb.StringProperty(required=True,
