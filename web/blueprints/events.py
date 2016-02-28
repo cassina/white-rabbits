@@ -16,6 +16,7 @@ events = Blueprint('events', __name__, template_folder='templates')
 
 FACEBOOK_GRAPH_URL = 'https://graph.facebook.com/v2.5/'
 
+
 @events.route('/register', methods=['POST'])
 def register():
     form = RegisterEventForm()
