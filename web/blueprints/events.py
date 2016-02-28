@@ -61,9 +61,9 @@ def user_choose_chelas(event_id, user_id):
 
 @events.route('/confirm_chelas', methods=['POST'])
 def confirm_chelas():
-    form = request.form
-    confirmation = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == request.form.user_id).get()
+    form = ChooseChelaForm()
     if form.validate_on_submit():
+        confirmation = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == form.user_id.data).get()
         confirmation.drink_brand = form.drink_brand.data
         confirmation.put()
         return 'Thank you'
