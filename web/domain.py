@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask_wtf import Form
-from wtforms.fields import StringField, SubmitField, HiddenField
+from wtforms.fields import StringField, SubmitField, HiddenField, SelectMultipleField
 from wtforms.validators import InputRequired
 from google.appengine.ext import ndb
 
@@ -14,6 +14,14 @@ class RegisterEventForm(Form):
     event_name = HiddenField(validators=[InputRequired()])
     event_time = HiddenField(validators=[InputRequired()])
     submit = SubmitField()
+
+
+class ChooseChelaForm(Form):
+    event_id = HiddenField(validators=[InputRequired()])
+    user_id = HiddenField(validators=[InputRequired()])
+    type_of_chela = SelectMultipleField(choices=['Victoria', 'Corona', 'Modelo'],
+                                        validators=[InputRequired()])
+    submit = SubmitField(description='Party Hard')
 
 
 class EventModel(ndb.Model):

@@ -9,12 +9,13 @@ import time
 from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
 
-from web.domain import RegisterEventForm, EventModel, DrinkConfirmationModel
+from web.domain import RegisterEventForm, EventModel, DrinkConfirmationModel, ChooseChelaForm
 from secrets import FB_APP_ID, FB_APP_SECRET
 
 events = Blueprint('events', __name__, template_folder='templates')
 
 FACEBOOK_GRAPH_URL = 'https://graph.facebook.com/v2.5/'
+
 
 @events.route('/register', methods=['POST'])
 def register():
@@ -52,7 +53,8 @@ def local_to_utc(date_time):
 
 @events.route('/<event_id>/<user_id>', methods=['POST'])
 def user_choose_chelas(event_id, user_id):
-    return render_template('choose_chelas.html', event_id=event_id, user_id=user_id)
+    form = ChooseChelaForm(event_id=event_id, user_id=user_id)
+    return render_template('choose_chelas.html', form=form)
 
 
 @events.route('/dashboard/<event_id>')
@@ -77,8 +79,7 @@ def listen():
 def query_active_events():
     event_list = EventModel.query(ndb.AND(EventModel.event_time >= datetime.datetime.now(),
                                           EventModel.made_request == False)).fetch()
-    event_json = json.dumps(str(event_list))
-    return event_json
+    return event_list
 
 
 @events.route('/notify/<event_id>/<user_id>')
@@ -108,6 +109,8 @@ def send_notification(event, user_id):
 def attendants(event_id):
     event = EventModel.query(EventModel.fb_event_id == event_id).get()
     send_attendants_notifications(event)
+    return 'ok'
+
 
 def send_attendants_notifications(event):
     event_id = event.fb_event_id
