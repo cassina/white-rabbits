@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import datetime
 import json
+import logging
+import requests
 
 from google.appengine.ext import ndb
 from flask import Blueprint, redirect, url_for, render_template, flash
@@ -71,7 +73,6 @@ def send_notification(event, user_id):
 
     href = 'events/{}/{}'.format(event.fb_event_id, user_id)
 
-    import requests
     notification_url = "https://graph.facebook.com/v2.5/{user_id}/notifications".format(user_id=user_id)
     data = {
       'debug': 'all',
@@ -81,10 +82,9 @@ def send_notification(event, user_id):
       'href': href
     }
 
-    import logging, json
-    logging.critical('{}'.format(json.dumps({
-        'url'=notification_url,
-        'data'=data
-    })))
+    logging.critical(json.dumps({
+        'url': notification_url,
+        'data': data
+    }))
 
     return requests.request('POST', notification_url, data=data)
