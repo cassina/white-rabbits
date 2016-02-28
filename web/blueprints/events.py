@@ -7,7 +7,7 @@ from dateutil.parser import parse
 import time
 
 from google.appengine.ext import ndb
-from flask import Blueprint, redirect, url_for, render_template, flash
+from flask import Blueprint, redirect, url_for, render_template, flash, request
 
 from web.domain import RegisterEventForm, EventModel, DrinkConfirmationModel, ChooseChelaForm
 from secrets import FB_APP_ID, FB_APP_SECRET
@@ -53,14 +53,20 @@ def local_to_utc(date_time):
 
 @events.route('/<event_id>/<user_id>', methods=['POST'])
 def user_choose_chelas(event_id, user_id):
-    conf = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == user_id).get()
-    form = ChooseChelaForm(obj=conf)
-    if form.validate_on_submit():
-        conf.drink_brand = form.drink_brand.data
-        conf.put()
-        return 'Thank you'
+    form = ChooseChelaForm()
+    form.event_id = event_id
+    form.user_id = user_id
     return render_template('choose_chelas.html', form=form)
 
+
+@events.route('/confirm_chelas')
+def confirm_chelas():
+    form = request.form
+    confirmation = DrinkConfirmationModel.query(DrinkConfirmationModel.fb_user_id == request.form.user_id).get()
+    if form.validate_on_submit():
+        confirmation.drink_brand = form.drink_brand.data
+        confirmation.put()
+        return 'Thank you'
 
 @events.route('/dashboard/<event_id>')
 def dashboard(event_id):
