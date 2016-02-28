@@ -1,40 +1,21 @@
 # -*- coding: utf-8 -*-
-from google.appengine.ext import ndb
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, redirect, url_for
 
-from flask_wtf import Form
-from wtforms import StringField, SubmitField
-from wtforms.validators import InputRequired
+from web.domain import RegisterEventForm, EventModel
 
 
 events = Blueprint('events', __name__, template_folder='templates')
 
-DEMO_URL = 'https://www.facebook.com/events/1315199878496490'
 
-
-@events.route('/home', methods=['GET', 'POST'])
-def events_home():
+@events.route('/register', methods=['POST'])
+def register():
     form = RegisterEventForm()
     if form.validate_on_submit():
         event = EventModel()
-        event.fb_id = form.fb_url.data.split('events/')[1]
-        event.url = form.fb_url.data
-        event.owner = 'fake-owner'
+        event.fb_event_id = form.fb_url.data.split('events/')[1]
+        event.fb_user_id = form.fb_user_id.data
         event.put()
-        return redirect()
-    return render_template('events_home.html', form=form)
-
-
-@events.route('/dashboard')
-def event_dashboard():
-    pass
-
-
-class RegisterEventForm(Form):
-    fb_url = StringField(description='Please paste de Facebook Event url Here',
-                               validators=[InputRequired()])
-    submit = SubmitField()
-
+        return redirect(url_for('canvas.home'))
 
 class EventModel(ndb.Model):
     created = ndb.DateTimeProperty(auto_now_add=True,
