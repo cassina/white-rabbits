@@ -78,13 +78,14 @@ def query_active_events():
 
 @events.route('/notify/<event_id>/<user_id>')
 def send_event_notification(event_id, user_id):
-    event = EventModel.query(EventModel.fb_event_id == '1051962044842399').get()
+    event = EventModel.query(EventModel.fb_event_id == event_id).fetch()[0]
+    print(event)
     response = send_notification(event, user_id)
     return response.text
 
 
 def send_notification(event, user_id):
-    message = '@[{author}] invites you to choose your drinks for {event}'.format(author=event.fb_user_id, event=event.event_name)
+    message = u'@[{author}] invites you to choose your drinks for {event}'.format(author=event.fb_user_id, event=event.event_name)
 
     href = 'events/{}/{}'.format(event.fb_event_id, user_id)
 
